@@ -134,7 +134,7 @@ function openMaster() {
   masterPanel.classList.add('hidden');
   masterLogin.classList.remove('hidden');
   panelError.classList.add('hidden');
-  passwordField.value = 'grandline2024';
+  passwordField.value = '';
   passwordField.focus();
   setActiveMasterTab('personagens');
 }
@@ -148,7 +148,7 @@ function loginMaster() {
 
   if (!passwordField || !panelError || !masterPanel || !masterLogin) return;
 
-  if (passwordField.value.trim() === 'mestre' || passwordField.value.trim() === '1234') {
+  if (passwordField.value.trim() === 'grandline2024') {
     panelError.classList.add('hidden');
     masterLogin.classList.add('hidden');
     masterPanel.classList.remove('hidden');
