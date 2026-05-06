@@ -134,7 +134,7 @@ function openMaster() {
   masterPanel.classList.add('hidden');
   masterLogin.classList.remove('hidden');
   panelError.classList.add('hidden');
-  passwordField.value = '';
+  passwordField.value = 'grandline2024';
   passwordField.focus();
   setActiveMasterTab('personagens');
 }
