@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- Head -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>One Piece RPG</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- One Piece style font (closest available via Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=MedievalSharp&family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- OVERLAY de Loading -->
+  <div id="loading-screen">
+    <div class="loading-logo">
+      <div class="skull-icon">☠</div>
+      <h1>ONE PIECE RPG</h1>
+      <div class="loading-bar"><div class="loading-fill"></div></div>
+      <p>Navegando pelos Mares...</p>
+    </div>
+  </div>
+
+  <!-- NAVEGAÇÃO PRINCIPAL -->
+  <nav id="main-nav">
+    <div class="nav-brand">
+      <span class="skull">☠</span>
+      <span class="nav-title">ONE PIECE RPG</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active" data-section="home">🏠 Início</a></li>
+      <li><a href="#wanted" class="nav-link" data-section="wanted">📜 Procurados</a></li>
+      <li><a href="#ranking" class="nav-link" data-section="ranking">👑 Ranking</a></li>
+      <li><a href="#titles" class="nav-link" data-section="titles">🏆 Títulos</a></li>
+      <li><a href="#conquistas" class="nav-link" data-section="conquistas">⚔️ Conquistas</a></li>
+      <li><a href="#mapa" class="nav-link" data-section="mapa">🗺️ Mapa-Múndi</a></li>
+      <li><a href="#" class="nav-link master-link" id="open-master">🔑 Mestre</a></li>
+    </ul>
+    <div class="nav-toggle" id="nav-toggle">☰</div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- ═══════════════════ HOME ═══════════════════ -->
+    <!-- Home -->
+    <section id="home" class="section active">
+      <div class="ocean-bg"></div>
+      <div class="home-hero">
+        <div class="hero-skull">☠</div>
+        <h1 class="hero-title">ONE PIECE RPG</h1>
+        <p class="hero-sub">Navegue pelos Sete Mares · Conquiste Fama · Torne-se o Rei dos Piratas</p>
+        <div class="hero-stats" id="hero-stats">
+          <!-- Preenchido pelo JS -->
+        </div>
+        <div class="home-cards">
+          <div class="home-card" onclick="goTo('wanted')">
+            <div class="hc-icon">📜</div>
+            <h3>Cartazes</h3>
+            <p>Veja os procurados mais perigosos</p>
+          </div>
+          <div class="home-card" onclick="goTo('ranking')">
+            <div class="hc-icon">👑</div>
+            <h3>Ranking</h3>
+            <p>Top Piratas & Guerreiros</p>
+          </div>
+          <div class="home-card" onclick="goTo('conquistas')">
+            <div class="hc-icon">⚔️</div>
+            <h3>Conquistas</h3>
+            <p>Missões e recompensas épicas</p>
+          </div>
+          <div class="home-card" onclick="goTo('mapa')">
+            <div class="hc-icon">🗺️</div>
+            <h3>Mapa-Múndi</h3>
+            <p>Explore o mundo de One Piece</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CARTAZES DE PROCURADO ═══════════════════ -->
+    <section id="wanted" class="section">
+      <div class="section-header">
+        <h2 class="section-title">📜 Cartazes de Procurado</h2>
+        <p class="section-sub">Os piratas mais perigosos dos Sete Mares</p>
+      </div>
+      <div class="wanted-grid" id="wanted-grid">
+        <!-- Gerado pelo JS -->
+      </div>
+    </section>
+
+    <!-- ═══════════════════ RANKING ═══════════════════ -->
+    <section id="ranking" class="section">
+      <div class="section-header">
+        <h2 class="section-title">👑 Ranking de Personagens</h2>
+        <p class="section-sub">Os mais poderosos do mundo</p>
+      </div>
+      <div class="ranking-container">
+        <div class="ranking-podium" id="ranking-podium"></div>
+        <div class="ranking-list" id="ranking-list"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ TÍTULOS ═══════════════════ -->
+    <section id="titles" class="section">
+      <div class="section-header">
+        <h2 class="section-title">🏆 Títulos</h2>
+        <p class="section-sub">Conquiste títulos lendários e mude sua identidade</p>
+      </div>
+      <div class="titles-grid" id="titles-grid"></div>
+    </section>
+
+    <!-- ═══════════════════ CONQUISTAS ═══════════════════ -->
+    <section id="conquistas" class="section">
+      <div class="section-header">
+        <h2 class="section-title">⚔️ Conquistas</h2>
+        <p class="section-sub">Complete missões para ganhar XP e Títulos</p>
+      </div>
+      <div class="conquistas-filters">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="disponivel">Disponíveis</button>
+        <button class="filter-btn" data-filter="completa">Completas</button>
+        <button class="filter-btn" data-filter="especial">Especiais</button>
+      </div>
+      <div class="conquistas-grid" id="conquistas-grid"></div>
+    </section>
+
+    <!-- ═══════════════════ MAPA ═══════════════════ -->
+    <section id="mapa" class="section">
+      <div class="section-header">
+        <h2 class="section-title">🗺️ Mapa-Múndi</h2>
+        <p class="section-sub">Explore o Grand Line e todos os oceanos</p>
+      </div>
+      <div class="map-wrapper">
+        <div class="map-legend">
+          <div class="legend-item"><span class="leg-dot visited"></span> Visitado</div>
+          <div class="legend-item"><span class="leg-dot not-visited"></span> Não Visitado</div>
+          <div class="legend-item"><span class="leg-dot special"></span> Especial</div>
+        </div>
+        <div class="world-map-container" id="world-map">
+          <!-- SVG mapa gerado pelo JS -->
+        </div>
+        <div class="island-info-panel" id="island-panel">
+          <div class="panel-close" onclick="closePanel()">✕</div>
+          <div id="panel-content"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════ MODAL MESTRE ═══════════════════ -->
+  <div id="master-overlay" class="modal-overlay hidden">
+    <div class="master-modal">
+      <div class="master-header">
+        <h2>🔑 Painel do Mestre</h2>
+        <button class="modal-close" onclick="closeMaster()">✕</button>
+      </div>
+      <div id="master-login" class="master-section">
+        <p>Insira a senha do Mestre para continuar</p>
+        <div class="master-input-group">
+          <input type="password" id="master-password" placeholder="Senha do Mestre..." />
+          <button onclick="loginMaster()">Entrar</button>
+        </div>
+        <div id="master-error" class="error-msg hidden">Senha incorreta!</div>
+      </div>
+      <div id="master-panel" class="master-section hidden">
+        <div class="master-tabs">
+          <button class="mtab active" data-tab="personagens">👤 Personagens</button>
+          <button class="mtab" data-tab="conquistas-m">⚔️ Conquistas</button>
+          <button class="mtab" data-tab="titulos-m">🏆 Títulos</button>
+          <button class="mtab" data-tab="ilhas-m">🗺️ Ilhas</button>
+          <button class="mtab" data-tab="concluir">✅ Concluir Missão</button>
+        </div>
+
+        <!-- Tab: Personagens -->
+        <div class="mtab-content active" id="tab-personagens">
+          <h3>Adicionar / Editar Personagem</h3>
+          <div class="form-grid">
+            <input id="p-nome" placeholder="Nome do Personagem" />
+            <input id="p-classe" placeholder="Classe / Cargo" />
+            <input id="p-recompensa" placeholder="Recompensa (Berry)" type="number"/>
+            <input id="p-fruta" placeholder="Fruta do Diabo (se tiver)" />
+            <input id="p-foto" placeholder="URL da Foto" />
+            <select id="p-afiliacao">
+              <option value="pirata">Pirata</option>
+              <option value="marinha">Marinha</option>
+              <option value="revolucionario">Revolucionário</option>
+              <option value="neutro">Neutro</option>
+            </select>
+          </div>
+          <button class="master-btn" onclick="addPersonagem()">➕ Adicionar Personagem</button>
+          <hr/>
+          <h3>Personagens Existentes</h3>
+          <div id="personagens-list-master"></div>
+        </div>
+
+        <!-- Tab: Conquistas -->
+        <div class="mtab-content hidden" id="tab-conquistas-m">
+          <h3>Adicionar Conquista</h3>
+          <div class="form-grid">
+            <input id="c-nome" placeholder="Nome da Conquista" />
+            <input id="c-desc" placeholder="Descrição" />
+            <input id="c-xp" placeholder="XP Recompensa" type="number"/>
+            <input id="c-titulo" placeholder="Título Recompensa (opcional)" />
+            <select id="c-tipo">
+              <option value="disponivel">Disponível</option>
+              <option value="especial">Especial</option>
+            </select>
+            <input id="c-icon" placeholder="Ícone (emoji)" />
+          </div>
+          <button class="master-btn" onclick="addConquista()">➕ Adicionar Conquista</button>
+          <hr/>
+          <h3>Conquistas Existentes</h3>
+          <div id="conquistas-list-master"></div>
+        </div>
+
+        <!-- Tab: Títulos -->
+        <div class="mtab-content hidden" id="tab-titulos-m">
+          <h3>Adicionar Título</h3>
+          <div class="form-grid">
+            <input id="t-nome" placeholder="Nome do Título" />
+            <input id="t-desc" placeholder="Descrição" />
+            <input id="t-icon" placeholder="Ícone (emoji)" />
+            <input id="t-cor" type="color" value="#ffd700" />
+            <input id="t-req" placeholder="Como obter" />
+          </div>
+          <button class="master-btn" onclick="addTitulo()">➕ Adicionar Título</button>
+          <hr/>
+          <h3>Títulos Existentes</h3>
+          <div id="titulos-list-master"></div>
+        </div>
+
+        <!-- Tab: Ilhas -->
+        <div class="mtab-content hidden" id="tab-ilhas-m">
+          <h3>Adicionar Ilha</h3>
+          <div class="form-grid">
+            <input id="i-nome" placeholder="Nome da Ilha" />
+            <input id="i-desc" placeholder="Descrição" />
+            <input id="i-region" placeholder="Região (ex: East Blue)" />
+            <input id="i-x" placeholder="Posição X (0-100)" type="number"/>
+            <input id="i-y" placeholder="Posição Y (0-100)" type="number"/>
+            <select id="i-tipo">
+              <option value="normal">Normal</option>
+              <option value="special">Especial / Épica</option>
+              <option value="grandline">Grand Line</option>
+              <option value="newworld">New World</option>
+            </select>
+          </div>
+          <button class="master-btn" onclick="addIlha()">➕ Adicionar Ilha</button>
+          <hr/>
+          <h3>Ilhas Existentes</h3>
+          <div id="ilhas-list-master"></div>
+        </div>
+
+        <!-- Tab: Concluir Missão -->
+        <div class="mtab-content hidden" id="tab-concluir">
+          <h3>Marcar Conquista como Concluída por Personagem</h3>
+          <div class="form-grid">
+            <select id="cm-personagem"><option value="">Selecione o Personagem</option></select>
+            <select id="cm-conquista"><option value="">Selecione a Conquista</option></select>
+          </div>
+          <button class="master-btn" onclick="concluirMissao()">✅ Confirmar Conclusão</button>
+          <div id="cm-feedback" class="feedback-msg"></div>
+          <hr/>
+          <h3>Marcar Ilha como Visitada</h3>
+          <div class="form-grid">
+            <select id="iv-personagem"><option value="">Selecione o Personagem</option></select>
+            <select id="iv-ilha"><option value="">Selecione a Ilha</option></select>
+          </div>
+          <button class="master-btn" onclick="marcarIlhaVisitada()">🗺️ Marcar como Visitada</button>
+          <div id="iv-feedback" class="feedback-msg"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PERSONAGEM DETALHES -->
+  <div id="char-modal-overlay" class="modal-overlay hidden">
+    <div class="char-modal">
+      <button class="modal-close" onclick="closeCharModal()">✕</button>
+      <div id="char-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/xp.js"></script>
+  <script src="js/wanted.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/titles.js"></script>
+  <script src="js/conquistas.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/master.js"></script>
+  <script src="js/bc.js"></script>
+</body>
+</html>
