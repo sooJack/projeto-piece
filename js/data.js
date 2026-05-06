@@ -64,6 +64,7 @@ const characters = [
     titles: ['Imperatriz dos Amazona'],
     achievements: ['ach-5'],
     visitedIslands: ['island-3'],
+  },
 ];
 
 // Achievements
@@ -117,6 +118,7 @@ const achievements = [
     type: 'disponivel',
     icon: '💎',
     completedBy: ['char-5'],
+  },
 ];
 
 // Titles
@@ -160,6 +162,7 @@ const titles = [
     icon: '🦅',
     color: '#bbbbbb',
     req: 'Proteger seu território com honra.',
+  },
 ];
 
 // Islands

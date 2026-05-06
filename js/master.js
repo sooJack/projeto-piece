@@ -24,6 +24,8 @@ function renderPersonagensMaster() {
         </div>
         <button class="del-btn" onclick="deleteCharacter('${character.id}')">Excluir</button>
       </div>
+    `)
+    .join('');
 }
 
 // Conquistas Master
@@ -36,14 +38,21 @@ function renderConquistasMaster() {
       <div class="master-list-item">
         <div class="item-info">
           <div class="item-name">${conquista.name}</div>
-          <div>${conquista.type === 'especial' ? 'Especial' : 'Disponível'} • +${conquista.xp} XP</div>
+          <div>
+            ${conquista.type === 'especial' ? 'Especial' : 'Disponível'} • +${conquista.xp} XP
+          </div>
         </div>
-        <button class="del-btn" onclick="deleteConquista('${conquista.id}')">Excluir</button>
+
+        <button class="del-btn" onclick="deleteConquista('${conquista.id}')">
+          Excluir
+        </button>
       </div>
     `)
+    .join('');
 }
 
-// Titulos Masterfunction renderTitulosMaster() {
+// Titulos Master
+function renderTitulosMaster() {
   const list = document.getElementById('titulos-list-master');
   if (!list) return;
 
@@ -54,13 +63,18 @@ function renderConquistasMaster() {
           <div class="item-name">${titulo.name}</div>
           <div>${titulo.req}</div>
         </div>
-        <button class="del-btn" onclick="deleteTitulo('${titulo.id}')">Excluir</button>
+
+        <button class="del-btn" onclick="deleteTitulo('${titulo.id}')">
+          Excluir
+        </button>
       </div>
     `)
     .join('');
 }
 
-// Ilhas Master  const list = document.getElementById('ilhas-list-master');
+// Ilhas Master
+function renderIlhasMaster() {
+  const list = document.getElementById('ilhas-list-master');
   if (!list) return;
 
   list.innerHTML = islands
@@ -70,7 +84,10 @@ function renderConquistasMaster() {
           <div class="item-name">${ilha.name}</div>
           <div>${ilha.region} • ${ilha.type}</div>
         </div>
-        <button class="del-btn" onclick="deleteIlha('${ilha.id}')">Excluir</button>
+
+        <button class="del-btn" onclick="deleteIlha('${ilha.id}')">
+          Excluir
+        </button>
       </div>
     `)
     .join('');
@@ -81,28 +98,39 @@ function populateMasterSelects() {
     document.getElementById('cm-personagem'),
     document.getElementById('iv-personagem'),
   ];
+
   const conquestSelect = document.getElementById('cm-conquista');
   const islandSelect = document.getElementById('iv-ilha');
 
   characterSelects.forEach((select) => {
     if (!select) return;
-    select.innerHTML = `<option value="">Selecione o Personagem</option>` +
+
+    select.innerHTML =
+      `<option value="">Selecione o Personagem</option>` +
       characters
-        .map((character) => `<option value="${character.id}">${character.name}</option>`)
+        .map((character) =>
+          `<option value="${character.id}">${character.name}</option>`
+        )
         .join('');
   });
 
   if (conquestSelect) {
-    conquestSelect.innerHTML = `<option value="">Selecione a Conquista</option>` +
+    conquestSelect.innerHTML =
+      `<option value="">Selecione a Conquista</option>` +
       achievements
-        .map((ach) => `<option value="${ach.id}">${ach.name}</option>`)
+        .map((ach) =>
+          `<option value="${ach.id}">${ach.name}</option>`
+        )
         .join('');
   }
 
   if (islandSelect) {
-    islandSelect.innerHTML = `<option value="">Selecione a Ilha</option>` +
+    islandSelect.innerHTML =
+      `<option value="">Selecione a Ilha</option>` +
       islands
-        .map((ilha) => `<option value="${ilha.id}">${ilha.name}</option>`)
+        .map((ilha) =>
+          `<option value="${ilha.id}">${ilha.name}</option>`
+        )
         .join('');
   }
 }
@@ -258,21 +286,29 @@ function concluirMissao() {
 
   const character = characters.find((item) => item.id === charId);
   const conquest = achievements.find((item) => item.id === conquestId);
+
   if (!character || !conquest) return;
 
   if (conquest.completedBy.includes(character.id)) {
-    if (feedback) feedback.textContent = 'Esse personagem já concluiu essa conquista.';
+    if (feedback) {
+      feedback.textContent = 'Esse personagem já concluiu essa conquista.';
+    }
     return;
   }
 
   conquest.completedBy.push(character.id);
   character.achievements.push(conquest.id);
   character.xp += conquest.xp;
-  if (conquest.titleReward && !character.titles.includes(conquest.titleReward)) {
+
+  if (
+    conquest.titleReward &&
+    !character.titles.includes(conquest.titleReward)
+  ) {
     character.titles.push(conquest.titleReward);
   }
 
   refreshApp();
+
   if (feedback) {
     feedback.textContent = 'Missão concluída com sucesso!';
     feedback.classList.add('success');
@@ -292,6 +328,7 @@ function marcarIlhaVisitada() {
 
   const character = characters.find((item) => item.id === charId);
   const island = islands.find((item) => item.id === islandId);
+
   if (!character || !island) return;
 
   if (character.visitedIslands.includes(island.id)) {
@@ -300,6 +337,7 @@ function marcarIlhaVisitada() {
       feedback.classList.add('error');
       feedback.classList.remove('success');
     }
+
     return;
   }
 
@@ -307,6 +345,7 @@ function marcarIlhaVisitada() {
   island.visitedBy.push(character.id);
 
   refreshApp();
+
   if (feedback) {
     feedback.textContent = 'Ilha marcada como visitada!';
     feedback.classList.add('success');
@@ -316,39 +355,59 @@ function marcarIlhaVisitada() {
 
 function deleteCharacter(id) {
   const index = characters.findIndex((item) => item.id === id);
+
   if (index < 0) return;
+
   characters.splice(index, 1);
+
   renderMasterLists();
   refreshApp();
+
   showToast('Personagem removido.');
 }
 
 function deleteConquista(id) {
   const index = achievements.findIndex((item) => item.id === id);
+
   if (index < 0) return;
+
   achievements.splice(index, 1);
+
   renderMasterLists();
   refreshApp();
+
   showToast('Conquista removida.');
 }
 
 function deleteTitulo(id) {
   const index = titles.findIndex((item) => item.id === id);
+
   if (index < 0) return;
+
   titles.splice(index, 1);
+
   renderMasterLists();
   refreshApp();
+
   showToast('Título removido.');
 }
 
 function deleteIlha(id) {
   const index = islands.findIndex((item) => item.id === id);
+
   if (index < 0) return;
+
   islands.splice(index, 1);
+
   characters.forEach((character) => {
-    character.visitedIslands = character.visitedIslands.filter((islandId) => islandId !== id);
+    character.visitedIslands =
+      character.visitedIslands.filter(
+        (islandId) => islandId !== id
+      );
   });
+
   renderMasterLists();
   refreshApp();
+
   showToast('Ilha removida.');
 }
